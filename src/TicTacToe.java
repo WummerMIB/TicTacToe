@@ -4,14 +4,13 @@ import java.util.Scanner;
 
 public class TicTacToe {
 	public static int change;
-
+	public static boolean rightPlace = false;
+	public static char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 	public static void main(String[] args) {
 
 		boolean winCon = false;
 		char changeSymbol = ' ';
 		String player = "Player 1";
-
-		char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
 		printTicTacToeBoard(gameboard);
 		System.out.println("1 Zweispielermodus");
@@ -19,20 +18,25 @@ public class TicTacToe {
 		functionScanner();
 
 		if (change == 1) {
-			System.out.println("Sie haben Zweispieler Modus Ausgewählt");
-			
+			System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
 			while (winCon == false) {
 				if (player == "Player 1") {
-					functionScanner();
-					changeSymbol = 'X';
-					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+					while (rightPlace == false) {
+						functionScanner();
+						changeSymbol = 'X';
+						rightPlacement(gameboard, changeSymbol, change);
+					}
+					rightPlace = false;
 					winCondition(gameboard, winCon);
 					player = "Player 2";
 				}
 				if (player == "Player 2") {
-					functionScanner();
-					changeSymbol = '0';
-					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+					while (rightPlace == false) {
+						functionScanner();
+						changeSymbol = 'O';
+						rightPlacement(gameboard, changeSymbol, change);
+					}
+					rightPlace = false;
 					winCondition(gameboard, winCon);
 					player = "Player 1";
 				}
@@ -49,7 +53,7 @@ public class TicTacToe {
 				}
 				if (player == "CPU") {
 					randomNumber();
-					changeSymbol = '0';
+					changeSymbol = 'O';
 					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
 					winCondition(gameboard, winCon);
 					player = "Player 1";
@@ -157,18 +161,21 @@ public class TicTacToe {
 		printTicTacToeBoard(gameboard);
 	}
 
-	public static void rightPlacement(char[] gameboard, char changeSymbol) {
-			if (gameboard [change] != ' ') {
-				System.out.println("Bitte setzen sie ih Symbol wo noch kein Symbol ist");
-			} else {
-				butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
-			}
-		
+	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change) {
+		System.out.println(gameboard);
+		if (gameboard[change] == 'X' || gameboard[change] == 'O' ) {
+			System.out.println("Bitte setzen sie ih Symbol wo noch kein Symbol ist");
+			return rightPlace = false;
+		}if (gameboard [change] == ' ') {
+			butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+			return rightPlace = true;
+		}
+			return false;
 	}
-	
+
 	public static int randomNumber() {
 		Random randomNum = new Random();
-		change = randomNum.nextInt(9)+1;
+		change = randomNum.nextInt(9) + 1;
 		return change;
 	}
 }
