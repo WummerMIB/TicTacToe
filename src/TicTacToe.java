@@ -63,6 +63,34 @@ public class TicTacToe {
 			System.out.println("Sie haben gewonnen");
 			return winCon = true;
 		}
+		if (gameboard[3] == 'X' && gameboard[4] == 'X' && gameboard[5] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		if (gameboard[6] == 'X' && gameboard[7] == 'X' && gameboard[8] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		if (gameboard[0] == 'X' && gameboard[3] == 'X' && gameboard[6] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		if (gameboard[1] == 'X' && gameboard[4] == 'X' && gameboard[7] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		if (gameboard[2] == 'X' && gameboard[5] == 'X' && gameboard[8] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		if (gameboard[0] == 'X' && gameboard[4] == 'X' && gameboard[8] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		if (gameboard[6] == 'X' && gameboard[4] == 'X' && gameboard[2] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
 		return false;
 	}
 
