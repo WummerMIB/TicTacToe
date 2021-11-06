@@ -158,14 +158,12 @@ public class TicTacToe {
 	}
 
 	public static void rightPlacement(char[] gameboard, char changeSymbol) {
-		for (char rightInput : gameboard) {
-			if (rightInput != ' ') {
+			if (gameboard [change] != ' ') {
 				System.out.println("Bitte setzen sie ih Symbol wo noch kein Symbol ist");
 			} else {
 				butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
-				break;
 			}
-		}
+		
 	}
 	
 	public static int randomNumber() {
