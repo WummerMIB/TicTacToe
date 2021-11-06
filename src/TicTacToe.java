@@ -20,9 +20,9 @@ public class TicTacToe {
 
 			if (playerString == "Player") {
 				System.out.println("Bitte geben sie eine Zahle von 1 - 9 ein");
-				functionScanner();
+				functionScanner(gameboard);
 				changeSymbol = 'X';
-				butInBoardXOrO(gameboard, changeSymbol);
+				rightPlacement(gameboard, changeSymbol);
 				winCondition(gameboard, winCon);
 				playerString = "CPU";
 			}
@@ -49,7 +49,8 @@ public class TicTacToe {
 	}
 
 	// Method for an Input for the User to place an X
-	public static int functionScanner() {
+	public static int functionScanner(char[] gameboard) {
+
 		Scanner sc = new Scanner(System.in);
 		change = sc.nextInt();
 		return change;
@@ -72,30 +73,40 @@ public class TicTacToe {
 			gameboard[0] = changeSymbol;
 			break;
 		case 2:
-			gameboard[3] = changeSymbol;
+			gameboard[1] = changeSymbol;
 			break;
 		case 3:
-			gameboard[6] = changeSymbol;
+			gameboard[2] = changeSymbol;
 			break;
 		case 4:
-			gameboard[2] = changeSymbol;
+			gameboard[3] = changeSymbol;
 			break;
 		case 5:
 			gameboard[4] = changeSymbol;
 			break;
 		case 6:
-			gameboard[7] = changeSymbol;
+			gameboard[5] = changeSymbol;
 			break;
 		case 7:
-			gameboard[2] = changeSymbol;
+			gameboard[6] = changeSymbol;
 			break;
 		case 8:
-			gameboard[5] = changeSymbol;
+			gameboard[7] = changeSymbol;
 			break;
 		case 9:
 			gameboard[8] = changeSymbol;
 			break;
 		}
 		printTicTacToeBoard(gameboard);
+	}
+
+	public static void rightPlacement(char[] gameboard, char changeSymbol) {
+		for (char rightInput : gameboard) {
+			if (rightInput != ' ') {
+				System.out.println("Bitte setzen sie ih Symbol wo noch kein Symbol ist");
+			}
+			break;
+		}
+		butInBoardXOrO(gameboard, changeSymbol);
 	}
 }
