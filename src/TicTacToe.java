@@ -70,24 +70,32 @@ public class TicTacToe {
 		switch (change) {
 		case 1:
 			gameboard[0] = changeSymbol;
+			break;
 		case 2:
 			gameboard[3] = changeSymbol;
+			break;
 		case 3:
 			gameboard[6] = changeSymbol;
+			break;
 		case 4:
 			gameboard[2] = changeSymbol;
+			break;
 		case 5:
 			gameboard[4] = changeSymbol;
+			break;
 		case 6:
 			gameboard[7] = changeSymbol;
+			break;
 		case 7:
 			gameboard[2] = changeSymbol;
+			break;
 		case 8:
 			gameboard[5] = changeSymbol;
+			break;
 		case 9:
 			gameboard[8] = changeSymbol;
-
-			printTicTacToeBoard(gameboard);
+			break;
 		}
+		printTicTacToeBoard(gameboard);
 	}
 }
