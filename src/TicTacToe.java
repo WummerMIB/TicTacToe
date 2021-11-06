@@ -9,16 +9,17 @@ public class TicTacToe {
 
 		boolean winCon = false;
 		char changeSymbol = ' ';
-		String player = "";
+		String player = "Player 1";
 
 		char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
 		printTicTacToeBoard(gameboard);
-		System.out.println("1 Für Zweispieler Modus 2 um gegen den Cpu zu spielen");
+		System.out.println("1 Zweispielermodus");
+		System.out.println("2 CPU");
 		functionScanner();
 
 		if (change == 1) {
-			player = "Player 1";
+			System.out.println("Sie haben Zweispieler Modus Ausgewählt");
 			
 			while (winCon == false) {
 				if (player == "Player 1") {
@@ -37,7 +38,22 @@ public class TicTacToe {
 				}
 			}
 		} else if (change == 2) {
+			System.out.println("Sie spielen nun gegen den PC");
 			while (winCon == false) {
+				if (player == "Player 1") {
+					functionScanner();
+					changeSymbol = 'X';
+					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+					winCondition(gameboard, winCon);
+					player = "CPU";
+				}
+				if (player == "CPU") {
+					randomNumber();
+					changeSymbol = '0';
+					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+					winCondition(gameboard, winCon);
+					player = "Player 1";
+				}
 			}
 		} else {
 			System.out.println("Bitte geben sie 1 oder 2 ein");
@@ -150,6 +166,11 @@ public class TicTacToe {
 				break;
 			}
 		}
-
+	}
+	
+	public static int randomNumber() {
+		Random randomNum = new Random();
+		change = randomNum.nextInt(9)+1;
+		return change;
 	}
 }
