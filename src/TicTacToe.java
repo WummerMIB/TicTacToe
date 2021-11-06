@@ -1,49 +1,93 @@
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
-	public static String change = null;
+	public static int change;
+
 	public static void main(String[] args) {
-		
-		
+
 		String playerString = "Player";
+		boolean winCon = false;
 
-		char[] gameboard = { ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ', };
-
-		printTicTacToeBoard(gameboard);
-		
-		functionScanner();
-
-		char changeSymbol = ' ';
-
-		if (playerString == "Player") {
-			changeSymbol = 'X';
-			playerString = "CPU";
-		} else if (playerString == "CPU") {
-			changeSymbol = 'O';
-			playerString = "Player";
-		}
-
-		
-		switch (change) {
-		case "1A":
-			gameboard[2] = changeSymbol;
-		}
+		char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
 		printTicTacToeBoard(gameboard);
+
+		while (winCon == false) {
+
+			char changeSymbol = ' ';
+
+			if (playerString == "Player") {
+				System.out.println("Bitte geben sie eine Zahle von 1 - 9 ein");
+				functionScanner();
+				changeSymbol = 'X';
+				butInBoardXOrO(gameboard, changeSymbol);
+				winCondition(gameboard, winCon);
+				playerString = "CPU";
+			}
+			if (playerString == "CPU") {
+				Random randomPlacemant = new Random();
+				System.out.println("CPU denkt nach");
+				change = randomPlacemant.nextInt(9) + 1;
+				changeSymbol = 'O';
+				butInBoardXOrO(gameboard, changeSymbol);
+				winCondition(gameboard, winCon);
+				playerString = "Player";
+			}
+
+		}
 
 	}
 
+	// Method to Print out the TicTacToe field
 	public static void printTicTacToeBoard(char[] gameboard) {
-		
-		//for (char[] row : gameboard) {
-		//	System.out.println();
-		//}
+
+		System.out.println("[" + gameboard[0] + "][" + gameboard[1] + "][" + gameboard[2] + "]");
+		System.out.println("[" + gameboard[3] + "][" + gameboard[4] + "][" + gameboard[5] + "]");
+		System.out.println("[" + gameboard[6] + "][" + gameboard[7] + "][" + gameboard[8] + "]");
 	}
-	
-	public static String functionScanner() {
+
+	// Method for an Input for the User to place an X
+	public static int functionScanner() {
 		Scanner sc = new Scanner(System.in);
-		change = sc.nextLine();
+		change = sc.nextInt();
 		return change;
+	}
+
+	// Method to check if the Player or the CPU has won and changes winCon to true
+	public static boolean winCondition(char[] gameboard, boolean winCon) {
+
+		if (gameboard[0] == 'X' && gameboard[1] == 'X' && gameboard[2] == 'X') {
+			System.out.println("Sie haben gewonnen");
+			return winCon = true;
+		}
+		return false;
+	}
+
+	// Method to place an X or an O
+	public static void butInBoardXOrO(char[] gameboard, char changeSymbol) {
+		switch (change) {
+		case 1:
+			gameboard[0] = changeSymbol;
+		case 2:
+			gameboard[3] = changeSymbol;
+		case 3:
+			gameboard[6] = changeSymbol;
+		case 4:
+			gameboard[2] = changeSymbol;
+		case 5:
+			gameboard[4] = changeSymbol;
+		case 6:
+			gameboard[7] = changeSymbol;
+		case 7:
+			gameboard[2] = changeSymbol;
+		case 8:
+			gameboard[5] = changeSymbol;
+		case 9:
+			gameboard[8] = changeSymbol;
+
+			printTicTacToeBoard(gameboard);
+		}
 	}
 }
