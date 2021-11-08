@@ -2,6 +2,10 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
+/*To-DO  
+5. CPU darf nicht an die gleiche stelle setzen
+*/
+
 public class TicTacToe {
 	public static int change;
 	public static boolean rightPlace = false;
@@ -12,28 +16,29 @@ public class TicTacToe {
 		boolean winCon = false;
 		char changeSymbol = ' ';
 		String player = "Player 1";
-		
+
 		// Calls Method to show the Gameboard on the Terminal
 		printTicTacToeBoard(gameboard);
-		
-		// Asks Player if he wants to play against a Person or the Computer 
+
+		// Asks Player if he wants to play against a Person or the Computer
 		System.out.println("1 Zweispielermodus");
 		System.out.println("2 CPU");
-		//Scanner for the decision if you want to play against a Player or CPU
+		// Scanner for the decision if you want to play against a Player or CPU
 		functionScanner();
-		
-		//If Input from User is 1 Play against a Player
+
+		// If Input from User is 1 Play against a Player
 		if (change == 1) {
 			System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
 			while (winCon == false) {
 				if (player == "Player 1") {
+					System.out.println("Spieler 1 ist am Zug");
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'X';
 						rightPlacement(gameboard, changeSymbol, change);
 					}
 					rightPlace = false;
-					winCondition(gameboard, winCon);
+					winCondition(gameboard, winCon, player);
 					player = "Player 2";
 				}
 				if (player == "Player 2") {
@@ -43,7 +48,7 @@ public class TicTacToe {
 						rightPlacement(gameboard, changeSymbol, change);
 					}
 					rightPlace = false;
-					winCondition(gameboard, winCon);
+					winCondition(gameboard, winCon, player);
 					player = "Player 1";
 				}
 			}
@@ -54,14 +59,14 @@ public class TicTacToe {
 					functionScanner();
 					changeSymbol = 'X';
 					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
-					winCondition(gameboard, winCon);
+					winCondition(gameboard, winCon, player);
 					player = "CPU";
 				}
 				if (player == "CPU") {
 					randomNumber();
 					changeSymbol = 'O';
 					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
-					winCondition(gameboard, winCon);
+					winCondition(gameboard, winCon, player);
 					player = "Player 1";
 				}
 			}
@@ -85,8 +90,8 @@ public class TicTacToe {
 		change = sc.nextInt();
 		return change;
 	}
-	
-	//Method that gives Random Number between one and nine  
+
+	// Method that gives Random Number between one and nine
 	public static int randomNumber() {
 		Random randomNum = new Random();
 		change = randomNum.nextInt(9) + 1;
@@ -94,46 +99,46 @@ public class TicTacToe {
 	}
 
 	// Method to check if the Player or the CPU has won and changes winCon to true
-	public static boolean winCondition(char[] gameboard, boolean winCon) {
+	public static boolean winCondition(char[] gameboard, boolean winCon, String player) {
 
 		if (gameboard[0] == 'X' && gameboard[1] == 'X' && gameboard[2] == 'X'
 				|| gameboard[0] == 'O' && gameboard[1] == 'O' && gameboard[2] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[3] == 'X' && gameboard[4] == 'X' && gameboard[5] == 'X'
 				|| gameboard[3] == 'O' && gameboard[4] == 'O' && gameboard[5] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[6] == 'X' && gameboard[7] == 'X' && gameboard[8] == 'X'
 				|| gameboard[6] == 'O' && gameboard[7] == 'O' && gameboard[8] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[0] == 'X' && gameboard[3] == 'X' && gameboard[6] == 'X'
 				|| gameboard[0] == 'O' && gameboard[3] == 'O' && gameboard[6] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[1] == 'X' && gameboard[4] == 'X' && gameboard[7] == 'X'
 				|| gameboard[1] == 'O' && gameboard[4] == 'O' && gameboard[7] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[2] == 'X' && gameboard[5] == 'X' && gameboard[8] == 'X'
 				|| gameboard[2] == 'O' && gameboard[5] == 'O' && gameboard[8] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[0] == 'X' && gameboard[4] == 'X' && gameboard[8] == 'X'
 				|| gameboard[0] == 'O' && gameboard[4] == 'O' && gameboard[8] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[6] == 'X' && gameboard[4] == 'X' && gameboard[2] == 'X'
 				|| gameboard[6] == 'O' && gameboard[4] == 'O' && gameboard[2] == 'O') {
-			System.out.println("Sieger");
+			System.out.println("Sieger " + player);
 			return winCon = true;
 		}
 		if (gameboard[0] != ' ' && gameboard[1] != ' ' && gameboard[2] != ' ' && gameboard[3] != ' '
@@ -178,20 +183,21 @@ public class TicTacToe {
 		}
 		printTicTacToeBoard(gameboard);
 	}
-	
-	//Method that looks if the Player can put an X or O in the field and don't overwrite a Player Symbol   
+
+	// Method that looks if the Player can put an X or O in the field and don't
+	// overwrite a Player Symbol
 	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change) {
+		System.out.println(change - 1);
 		System.out.println(gameboard);
-		if (gameboard[change] == 'X' || gameboard[change] == 'O') {
-			System.out.println("Bitte setzen sie ih Symbol wo noch kein Symbol ist");
+		if (gameboard[change - 1] == 'X' || gameboard[change - 1] == 'O') {
+			System.out.println("Bitte setzen sie ihr Symbol wo noch kein Symbol ist");
 			return rightPlace = false;
 		}
-		if (gameboard[change] == ' ') {
+		if (gameboard[change - 1] == ' ') {
 			butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
 			return rightPlace = true;
 		}
 		return false;
 	}
 
-	
 }
