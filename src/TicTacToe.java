@@ -12,12 +12,17 @@ public class TicTacToe {
 		boolean winCon = false;
 		char changeSymbol = ' ';
 		String player = "Player 1";
-
+		
+		// Calls Method to show the Gameboard on the Terminal
 		printTicTacToeBoard(gameboard);
+		
+		// Asks Player if he wants to play against a Person or the Computer 
 		System.out.println("1 Zweispielermodus");
 		System.out.println("2 CPU");
+		//Scanner for the decision if you want to play against a Player or CPU
 		functionScanner();
-
+		
+		//If Input from User is 1 Play against a Player
 		if (change == 1) {
 			System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
 			while (winCon == false) {
@@ -81,6 +86,7 @@ public class TicTacToe {
 		return change;
 	}
 	
+	//Method that gives Random Number between one and nine  
 	public static int randomNumber() {
 		Random randomNum = new Random();
 		change = randomNum.nextInt(9) + 1;
@@ -172,7 +178,8 @@ public class TicTacToe {
 		}
 		printTicTacToeBoard(gameboard);
 	}
-
+	
+	//Method that looks if the Player can put an X or O in the field and don't overwrite a Player Symbol   
 	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change) {
 		System.out.println(gameboard);
 		if (gameboard[change] == 'X' || gameboard[change] == 'O') {
