@@ -2,8 +2,11 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
-/*To-DO  
-5. CPU darf nicht an die gleiche stelle setzen
+/*To-DO
+1. aufhören nach Spielen  
+2.
+
+. CPU Spielen 
 */
 
 public class TicTacToe {
@@ -35,7 +38,7 @@ public class TicTacToe {
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'X';
-						rightPlacement(gameboard, changeSymbol, change,player);
+						rightPlacement(gameboard, changeSymbol, change, player);
 					}
 					rightPlace = false;
 					winCondition(gameboard, winCon, player);
@@ -45,7 +48,7 @@ public class TicTacToe {
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'O';
-						rightPlacement(gameboard, changeSymbol, change,player);
+						rightPlacement(gameboard, changeSymbol, change, player);
 					}
 					rightPlace = false;
 					winCondition(gameboard, winCon, player);
@@ -59,8 +62,9 @@ public class TicTacToe {
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'X';
-						rightPlacement(gameboard, changeSymbol, change,player);
+						rightPlacement(gameboard, changeSymbol, change, player);
 					}
+					rightPlace = false;
 					winCondition(gameboard, winCon, player);
 					player = "CPU";
 				}
@@ -69,8 +73,9 @@ public class TicTacToe {
 						randomNumber();
 						System.out.println(change);
 						changeSymbol = 'O';
-						rightPlacement(gameboard, changeSymbol, change,player);
+						rightPlacement(gameboard, changeSymbol, change, player);
 					}
+					rightPlace = false;
 					winCondition(gameboard, winCon, player);
 					player = "Player 1";
 				}
@@ -91,15 +96,24 @@ public class TicTacToe {
 
 	// Method for an Input for the User to place an X
 	public static int functionScanner() {
-		Scanner sc = new Scanner(System.in);
-		change = sc.nextInt();
+		boolean rightInput = false;
+		while (rightInput == false) {
+			Scanner sc = new Scanner(System.in);
+			change = sc.nextInt();
+			try {
+				rightInput = true;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
 		return change;
 	}
 
 	// Method that gives Random Number between one and nine
 	public static int randomNumber() {
 		Random randomNum = new Random();
-		change = randomNum.nextInt(9) + 1;
+		change = randomNum.nextInt(gameboard.length);
 		return change;
 	}
 
@@ -195,7 +209,7 @@ public class TicTacToe {
 		System.out.println(change - 1);
 		System.out.println(gameboard);
 		if (gameboard[change - 1] == 'X' || gameboard[change - 1] == 'O') {
-			if(player == "CPU") {
+			if (player == "CPU") {
 				System.out.println("Thinking...");
 			}
 			System.out.println("Bitte setzen sie ihr Symbol wo noch kein Symbol ist");
