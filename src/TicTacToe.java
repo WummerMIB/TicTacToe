@@ -1,3 +1,6 @@
+
+// 2120717 Marco Mohr, 2123474 Marie Kapusta
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
@@ -5,7 +8,6 @@ import java.util.Scanner;
 /*To-DO
 1. aufhören nach Spielen  
 */
-
 public class TicTacToe {
 	public static int change;
 	public static boolean rightPlace = false;
@@ -17,8 +19,8 @@ public class TicTacToe {
 		char changeSymbol = ' ';
 		String player = "Player 1";
 
-		// Calls Method to show the Gameboard on the Terminal
-		printTicTacToeBoard(gameboard);
+		// Calls Method to show the Gameboard and explain the game
+		explainGame(gameboard);
 
 		// Asks Player if he wants to play against a Person or the Computer
 		System.out.println("1 Zweispielermodus");
@@ -96,19 +98,19 @@ public class TicTacToe {
 		boolean rightInput = false;
 		while (rightInput == false) {
 			Scanner sc = new Scanner(System.in);
-			
+
 			if (sc.hasNextInt()) {
 				change = sc.nextInt();
 				if (change <= 9) {
 					return change;
-				}else {
+				} else {
 					System.out.println("Bitte geben sie ein Zahl eine Richtige Zahl ein");
 				}
-				
-			}else {
+
+			} else {
 				System.out.println("Bitte geben sie eine Zahl ein");
 			}
-			
+
 		}
 		return change;
 	}
@@ -223,6 +225,17 @@ public class TicTacToe {
 			return rightPlace = true;
 		}
 		return false;
+	}
+
+	public static void explainGame(char[] gameboard) {
+		System.out.println("Bitte geben sie eine Zahl ein die sie auf dem Feld sehen und an");
+		System.out.println("welcher stellen sie ihr Symbol setzen wollen");
+		for (int i = 0; i<gameboard.length;i++) {
+			int a = 1;
+			gameboard[i] = (char) a; 
+			a++;
+		}
+		printTicTacToeBoard(gameboard);
 	}
 
 }
