@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 /*To-DO
 1. aufhören nach Spielen  
-2.
-
-. CPU Spielen 
 */
 
 public class TicTacToe {
@@ -99,13 +96,19 @@ public class TicTacToe {
 		boolean rightInput = false;
 		while (rightInput == false) {
 			Scanner sc = new Scanner(System.in);
-			change = sc.nextInt();
-			try {
-				rightInput = true;
-			} catch (Exception e) {
-				// TODO: handle exception
+			
+			if (sc.hasNextInt()) {
+				change = sc.nextInt();
+				if (change <= 9) {
+					return change;
+				}else {
+					System.out.println("Bitte geben sie ein Zahl eine Richtige Zahl ein");
+				}
+				
+			}else {
+				System.out.println("Bitte geben sie eine Zahl ein");
 			}
-
+			
 		}
 		return change;
 	}
