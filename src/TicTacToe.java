@@ -231,8 +231,8 @@ public class TicTacToe {
 		System.out.println("Bitte geben sie eine Zahl ein die sie auf dem Feld sehen und an");
 		System.out.println("welcher stellen sie ihr Symbol setzen wollen");
 		for (int i = 0; i<gameboard.length;i++) {
-			int a = 1;
-			gameboard[i] = (char) a; 
+			char a = 1;
+			gameboard[i] = a; 
 			a++;
 		}
 		printTicTacToeBoard(gameboard);
