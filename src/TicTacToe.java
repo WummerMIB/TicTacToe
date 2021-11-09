@@ -35,7 +35,7 @@ public class TicTacToe {
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'X';
-						rightPlacement(gameboard, changeSymbol, change);
+						rightPlacement(gameboard, changeSymbol, change,player);
 					}
 					rightPlace = false;
 					winCondition(gameboard, winCon, player);
@@ -45,7 +45,7 @@ public class TicTacToe {
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'O';
-						rightPlacement(gameboard, changeSymbol, change);
+						rightPlacement(gameboard, changeSymbol, change,player);
 					}
 					rightPlace = false;
 					winCondition(gameboard, winCon, player);
@@ -56,16 +56,21 @@ public class TicTacToe {
 			System.out.println("Sie spielen nun gegen den PC");
 			while (winCon == false) {
 				if (player == "Player 1") {
-					functionScanner();
-					changeSymbol = 'X';
-					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+					while (rightPlace == false) {
+						functionScanner();
+						changeSymbol = 'X';
+						rightPlacement(gameboard, changeSymbol, change,player);
+					}
 					winCondition(gameboard, winCon, player);
 					player = "CPU";
 				}
 				if (player == "CPU") {
-					randomNumber();
-					changeSymbol = 'O';
-					butInBoardXOrOAndPrintBoard(gameboard, changeSymbol);
+					while (rightPlace == false) {
+						randomNumber();
+						System.out.println(change);
+						changeSymbol = 'O';
+						rightPlacement(gameboard, changeSymbol, change,player);
+					}
 					winCondition(gameboard, winCon, player);
 					player = "Player 1";
 				}
@@ -186,10 +191,13 @@ public class TicTacToe {
 
 	// Method that looks if the Player can put an X or O in the field and don't
 	// overwrite a Player Symbol
-	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change) {
+	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change, String player) {
 		System.out.println(change - 1);
 		System.out.println(gameboard);
 		if (gameboard[change - 1] == 'X' || gameboard[change - 1] == 'O') {
+			if(player == "CPU") {
+				System.out.println("Thinking...");
+			}
 			System.out.println("Bitte setzen sie ihr Symbol wo noch kein Symbol ist");
 			return rightPlace = false;
 		}
