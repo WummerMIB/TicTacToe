@@ -237,5 +237,11 @@ public class TicTacToe {
 		}
 		printTicTacToeBoard(gameboard);
 	}
+	
+	public static String inputName() {
+		Scanner playerName = new Scanner(System.in);
+		String player = playerName.nextLine();
+		return player;
+	}
 
 }
