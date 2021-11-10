@@ -230,12 +230,16 @@ public class TicTacToe {
 	public static void explainGame(char[] gameboard) {
 		System.out.println("Bitte geben sie eine Zahl ein die sie auf dem Feld sehen und an");
 		System.out.println("welcher stellen sie ihr Symbol setzen wollen");
-		for (int i = 0; i<gameboard.length;i++) {
-			char a = 1;
-			gameboard[i] = a; 
+		System.out.println("[1][2][3]");
+		System.out.println("[4][5][6]");
+		System.out.println("[7][8][9]");
+		
+		/*for (int i = 0; i<gameboard.length;i++) {
+			int a = 1;
+			gameboard[i] = (char) a; 
 			a++;
-		}
-		printTicTacToeBoard(gameboard);
+		}*/
+		
 	}
 	
 	public static String inputName() {
