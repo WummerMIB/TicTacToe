@@ -17,14 +17,19 @@ public class TicTacToe {
 	// Public Variable if player make a winning move set winCon to true give a
 	// wining message and end the game
 	public static boolean winCon = false;
+	// Variable if user wants to continue the game
 	public static boolean continueGame = true;
+	// String that save user yes or no if he wants to continue
 	public static String con = null;
+	// Variable for player that starts the game
 	public static String player = "Player 1";
 	
 	public static void main(String[] args) {
-
+		
+		// Variable that changes space in array to X for Player 1 and to O for Player 2
 		char changeSymbol = ' ';
-
+		
+		//while loop if user wants to continue
 		while (continueGame == true) {
 			// Asks Player if he wants to play against a Person or the Computer
 			System.out.println("1 Zweispielermodus");
@@ -38,9 +43,12 @@ public class TicTacToe {
 				// Calls Method to show the Gameboard and explain the game
 				explainGame(gameboard);
 				System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
+				// loops as long as no player wins if one fulfills winCon than break loop and give winner message
 				while (winCon == false) {
+					// if variable player is Player 1 than go on if condition
 					if (player == "Player 1") {
 						System.out.println("Spieler 1 ist am Zug");
+						// As long as user  
 						while (rightPlace == false) {
 							functionScanner();
 							changeSymbol = 'X';
@@ -103,7 +111,7 @@ public class TicTacToe {
 		System.out.println("[" + gameboard[6] + "][" + gameboard[7] + "][" + gameboard[8] + "]");
 	}
 
-	// Method for an Input for the User to place an X
+	// Method for an Input for the User to place an X or O
 	public static int functionScanner() {
 		boolean rightInput = false;
 		while (rightInput == false) {
