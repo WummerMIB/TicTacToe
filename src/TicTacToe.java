@@ -262,6 +262,10 @@ public class TicTacToe {
 			continueGame = false;
 		} else if (con.equals("ja")) {
 			System.out.println("Das Spiel startet von vorne!");
+			winCon = false;
+			for(int i = 0; i <= 8; i++) {
+				gameboard[i] = ' ';
+			}
 			continueGame = true;
 		}
 		{
