@@ -1,93 +1,100 @@
+
 // 2120717 Marco Mohr, 2123474 Marie Kapusta
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.lang.model.element.NestingKind;
 
 public class TicTacToe {
 	// Public Variable for User Input between one to nine
 	public static int change;
-	// Public Variable if User place Symbol right than change rightPlace to true and place a Symbol
+	// Public Variable if User place Symbol right than change rightPlace to true and
+	// place a Symbol
 	public static boolean rightPlace = false;
 	// Public Array that has nine space Elements
 	public static char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-	// Public Variable if player make a winning move set winCon to true give a wining message and end the game 
+	// Public Variable if player make a winning move set winCon to true give a
+	// wining message and end the game
 	public static boolean winCon = false;
-	
+	public static boolean continueGame = true;
+	public static String con = null;
+
 	public static void main(String[] args) {
 
 		char changeSymbol = ' ';
 		String player = "Player 1";
+		while (continueGame == true) {
+			// Asks Player if he wants to play against a Person or the Computer
+			System.out.println("1 Zweispielermodus");
+			System.out.println("2 CPU");
 
-		// Asks Player if he wants to play against a Person or the Computer
-		System.out.println("1 Zweispielermodus");
-		System.out.println("2 CPU");
+			// Scanner for the decision if you want to play against a Player or CPU
+			functionScanner();
 
-		// Scanner for the decision if you want to play against a Player or CPU
-		functionScanner();
-
-		// If Input from User is 1 Play against a Player
-		if (change == 1) {
-			// Calls Method to show the Gameboard and explain the game
-			explainGame(gameboard);
-			System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
-			while (winCon == false) {
-				if (player == "Player 1") {
-					System.out.println("Spieler 1 ist am Zug");
-					while (rightPlace == false) {
-						functionScanner();
-						changeSymbol = 'X';
-						rightPlacement(gameboard, changeSymbol, change, player);
+			// If Input from User is 1 Play against a Player
+			if (change == 1) {
+				// Calls Method to show the Gameboard and explain the game
+				explainGame(gameboard);
+				System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
+				while (winCon == false) {
+					if (player == "Player 1") {
+						System.out.println("Spieler 1 ist am Zug");
+						while (rightPlace == false) {
+							functionScanner();
+							changeSymbol = 'X';
+							rightPlacement(gameboard, changeSymbol, change, player);
+						}
+						rightPlace = false;
+						winCondition(gameboard, player);
+						System.out.println(winCon);
+						player = "Player 2";
+					} else if (player == "Player 2") {
+						while (rightPlace == false) {
+							functionScanner();
+							changeSymbol = 'O';
+							rightPlacement(gameboard, changeSymbol, change, player);
+						}
+						rightPlace = false;
+						winCondition(gameboard, player);
+						System.out.println(winCon);
+						player = "Player 1";
 					}
-					rightPlace = false;
-					winCondition(gameboard, player);
-					System.out.println(winCon);
-					player = "Player 2";
 				}
-				else if (player == "Player 2") {
-					while (rightPlace == false) {
-						functionScanner();
-						changeSymbol = 'O';
-						rightPlacement(gameboard, changeSymbol, change, player);
+			} else if (change == 2) {
+				// Calls Method to show the Gameboard and explain the game
+				explainGame(gameboard);
+				System.out.println("Sie spielen nun gegen den PC");
+				while (winCon == false) {
+					if (player == "Player 1") {
+						while (rightPlace == false) {
+							functionScanner();
+							changeSymbol = 'X';
+							rightPlacement(gameboard, changeSymbol, change, player);
+						}
+						rightPlace = false;
+						winCondition(gameboard, player);
+						player = "CPU";
+					} else if (player == "CPU") {
+						while (rightPlace == false) {
+							randomNumber();
+							System.out.println(change);
+							changeSymbol = 'O';
+							rightPlacement(gameboard, changeSymbol, change, player);
+						}
+						rightPlace = false;
+						winCondition(gameboard, player);
+						player = "Player 1";
 					}
-					rightPlace = false;
-					winCondition(gameboard, player);
-					System.out.println(winCon);
-					player = "Player 1";
 				}
+			} else {
+				System.out.println("Bitte geben sie 1 oder 2 ein");
 			}
-		} else if (change == 2) {
-			// Calls Method to show the Gameboard and explain the game
-			explainGame(gameboard);
-			System.out.println("Sie spielen nun gegen den PC");
-			while (winCon == false) {
-				if (player == "Player 1") {
-					while (rightPlace == false) {
-						functionScanner();
-						changeSymbol = 'X';
-						rightPlacement(gameboard, changeSymbol, change, player);
-					}
-					rightPlace = false;
-					winCondition(gameboard, player);
-					player = "CPU";
-				}
-				else if (player == "CPU") {
-					while (rightPlace == false) {
-						randomNumber();
-						System.out.println(change);
-						changeSymbol = 'O';
-						rightPlacement(gameboard, changeSymbol, change, player);
-					}
-					rightPlace = false;
-					winCondition(gameboard, player);
-					player = "Player 1";
-				}
-			}
-		} else {
-			System.out.println("Bitte geben sie 1 oder 2 ein");
+
+			continueGame();
+
 		}
-
 	}
 
 	// Method to Print out the TicTacToe field
@@ -132,7 +139,7 @@ public class TicTacToe {
 
 		if (gameboard[0] == 'X' && gameboard[1] == 'X' && gameboard[2] == 'X'
 				|| gameboard[0] == 'O' && gameboard[1] == 'O' && gameboard[2] == 'O') {
-			
+
 			System.out.println("Sieger " + player);
 			winCon = true;
 			return winCon;
@@ -243,17 +250,23 @@ public class TicTacToe {
 		System.out.println("Bitte geben sie eine Zahl ein die sie auf dem Feld sehen und an");
 		System.out.println("welcher stellen sie ihr Symbol setzen wollen");
 
-		/*
-		 * for (int i = 0; i<gameboard.length;i++) { int a = 1; gameboard[i] = (char) a;
-		 * a++; } printTicTacToeBoard(gameboard);
-		 */
-
 	}
 
-	public static String inputName() {
-		Scanner playerName = new Scanner(System.in);
-		String player = playerName.nextLine();
-		return player;
+	public static void continueGame() {
+		System.out.println("Möchten Sie nocheinmal Spielen? (ja/nein)");
+		Scanner continueGameScanner = new Scanner(System.in);
+		con = continueGameScanner.nextLine();
+		System.out.println(con);
+		if (con.equals("nein")) {
+			System.out.println("Danke fürs Spielen!");
+			continueGame = false;
+		} else if (con.equals("ja")) {
+			System.out.println("Das Spiel startet von vorne!");
+			continueGame = true;
+		}
+		{
+		}
+
 	}
 
 }
