@@ -19,11 +19,12 @@ public class TicTacToe {
 	public static boolean winCon = false;
 	public static boolean continueGame = true;
 	public static String con = null;
-
+	public static String player = "Player 1";
+	
 	public static void main(String[] args) {
 
 		char changeSymbol = ' ';
-		String player = "Player 1";
+
 		while (continueGame == true) {
 			// Asks Player if he wants to play against a Person or the Computer
 			System.out.println("1 Zweispielermodus");
@@ -47,7 +48,6 @@ public class TicTacToe {
 						}
 						rightPlace = false;
 						winCondition(gameboard, player);
-						System.out.println(winCon);
 						player = "Player 2";
 					} else if (player == "Player 2") {
 						while (rightPlace == false) {
@@ -57,7 +57,6 @@ public class TicTacToe {
 						}
 						rightPlace = false;
 						winCondition(gameboard, player);
-						System.out.println(winCon);
 						player = "Player 1";
 					}
 				}
@@ -227,7 +226,6 @@ public class TicTacToe {
 	// Method that looks if the Player can put an X or O in the field and don't
 	// overwrite a Player Symbol
 	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change, String player) {
-		System.out.println(gameboard);
 		if (gameboard[change - 1] == 'X' || gameboard[change - 1] == 'O') {
 			if (player == "CPU") {
 				System.out.println("Thinking...");
@@ -257,7 +255,6 @@ public class TicTacToe {
 		System.out.println("Möchten Sie nocheinmal Spielen? (ja/nein)");
 		Scanner continueGameScanner = new Scanner(System.in);
 		con = continueGameScanner.nextLine();
-		System.out.println(con);
 
 		if (con.equals("nein")) {
 			System.out.println("Danke fürs Spielen!");
@@ -270,6 +267,7 @@ public class TicTacToe {
 				gameboard[i] = ' ';
 			}
 			rigthContinueInput = true;
+			player = "Player 1";
 			continueGame = true;
 		} else if (!con.equals("nein") && !con.equals("ja")) {
 			System.out.println("Bitte geben sie ja oder nein ein");
