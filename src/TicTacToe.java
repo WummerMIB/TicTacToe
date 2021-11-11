@@ -1,17 +1,18 @@
-
 // 2120717 Marco Mohr, 2123474 Marie Kapusta
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
-/*To-DO
-1. aufhören nach Spielen  
-*/
+
 public class TicTacToe {
+	// Public Variable for User Input between one to nine
 	public static int change;
+	// Public Variable if User place Symbol right than change rightPlace to true and place a Symbol
 	public static boolean rightPlace = false;
+	// Public Array that has nine space Elements
 	public static char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+	// Public Variable if player make a winning move set winCon to true give a wining message and end the game 
 	public static boolean winCon = false;
 	
 	public static void main(String[] args) {
