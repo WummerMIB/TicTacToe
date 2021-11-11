@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
-
 import javax.lang.model.element.NestingKind;
 
 public class TicTacToe {
@@ -253,24 +252,30 @@ public class TicTacToe {
 	}
 
 	public static void continueGame() {
+		boolean rigthContinueInput = false;
+		while(rigthContinueInput == false) {
 		System.out.println("Möchten Sie nocheinmal Spielen? (ja/nein)");
 		Scanner continueGameScanner = new Scanner(System.in);
 		con = continueGameScanner.nextLine();
 		System.out.println(con);
+
 		if (con.equals("nein")) {
 			System.out.println("Danke fürs Spielen!");
 			continueGame = false;
+			rigthContinueInput = true;
 		} else if (con.equals("ja")) {
 			System.out.println("Das Spiel startet von vorne!");
 			winCon = false;
-			for(int i = 0; i <= 8; i++) {
+			for (int i = 0; i <= 8; i++) {
 				gameboard[i] = ' ';
 			}
+			rigthContinueInput = true;
 			continueGame = true;
+		} else if (!con.equals("nein") && !con.equals("ja")) {
+			System.out.println("Bitte geben sie ja oder nein ein");
+			rigthContinueInput = false;
 		}
-		{
-		}
-
+	}
 	}
 
 }
