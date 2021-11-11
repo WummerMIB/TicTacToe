@@ -176,6 +176,7 @@ public class TicTacToe {
 
 	// Method to place an X or an O
 	public static void butInBoardXOrOAndPrintBoard(char[] gameboard, char changeSymbol) {
+		//switch for User Input if for example User Input is 2 then change array Element one 
 		switch (change) {
 		case 1:
 			gameboard[0] = changeSymbol;
@@ -205,13 +206,13 @@ public class TicTacToe {
 			gameboard[8] = changeSymbol;
 			break;
 		}
+		// after us set the Symbol print out the new board 
 		printTicTacToeBoard(gameboard);
 	}
 
 	// Method that looks if the Player can put an X or O in the field and don't
 	// overwrite a Player Symbol
 	public static boolean rightPlacement(char[] gameboard, char changeSymbol, int change, String player) {
-		System.out.println(change - 1);
 		System.out.println(gameboard);
 		if (gameboard[change - 1] == 'X' || gameboard[change - 1] == 'O') {
 			if (player == "CPU") {
