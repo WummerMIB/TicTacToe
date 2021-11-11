@@ -12,24 +12,24 @@ public class TicTacToe {
 	public static int change;
 	public static boolean rightPlace = false;
 	public static char[] gameboard = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-
+	public static boolean winCon = false;
+	
 	public static void main(String[] args) {
 
-		boolean winCon = false;
 		char changeSymbol = ' ';
 		String player = "Player 1";
-
-		// Calls Method to show the Gameboard and explain the game
-		explainGame(gameboard);
 
 		// Asks Player if he wants to play against a Person or the Computer
 		System.out.println("1 Zweispielermodus");
 		System.out.println("2 CPU");
+
 		// Scanner for the decision if you want to play against a Player or CPU
 		functionScanner();
 
 		// If Input from User is 1 Play against a Player
 		if (change == 1) {
+			// Calls Method to show the Gameboard and explain the game
+			explainGame(gameboard);
 			System.out.println("Sie haben Zweispieler Modus Ausgewählt ");
 			while (winCon == false) {
 				if (player == "Player 1") {
@@ -40,21 +40,25 @@ public class TicTacToe {
 						rightPlacement(gameboard, changeSymbol, change, player);
 					}
 					rightPlace = false;
-					winCondition(gameboard, winCon, player);
+					winCondition(gameboard, player);
+					System.out.println(winCon);
 					player = "Player 2";
 				}
-				if (player == "Player 2") {
+				else if (player == "Player 2") {
 					while (rightPlace == false) {
 						functionScanner();
 						changeSymbol = 'O';
 						rightPlacement(gameboard, changeSymbol, change, player);
 					}
 					rightPlace = false;
-					winCondition(gameboard, winCon, player);
+					winCondition(gameboard, player);
+					System.out.println(winCon);
 					player = "Player 1";
 				}
 			}
 		} else if (change == 2) {
+			// Calls Method to show the Gameboard and explain the game
+			explainGame(gameboard);
 			System.out.println("Sie spielen nun gegen den PC");
 			while (winCon == false) {
 				if (player == "Player 1") {
@@ -64,10 +68,10 @@ public class TicTacToe {
 						rightPlacement(gameboard, changeSymbol, change, player);
 					}
 					rightPlace = false;
-					winCondition(gameboard, winCon, player);
+					winCondition(gameboard, player);
 					player = "CPU";
 				}
-				if (player == "CPU") {
+				else if (player == "CPU") {
 					while (rightPlace == false) {
 						randomNumber();
 						System.out.println(change);
@@ -75,7 +79,7 @@ public class TicTacToe {
 						rightPlacement(gameboard, changeSymbol, change, player);
 					}
 					rightPlace = false;
-					winCondition(gameboard, winCon, player);
+					winCondition(gameboard, player);
 					player = "Player 1";
 				}
 			}
@@ -117,18 +121,20 @@ public class TicTacToe {
 
 	// Method that gives Random Number between one and nine
 	public static int randomNumber() {
-		Random randomNum = new Random();
-		change = randomNum.nextInt(gameboard.length);
+		Random randNum = new Random();
+		change = randNum.nextInt(9) + 1;
 		return change;
 	}
 
 	// Method to check if the Player or the CPU has won and changes winCon to true
-	public static boolean winCondition(char[] gameboard, boolean winCon, String player) {
+	public static boolean winCondition(char[] gameboard, String player) {
 
 		if (gameboard[0] == 'X' && gameboard[1] == 'X' && gameboard[2] == 'X'
 				|| gameboard[0] == 'O' && gameboard[1] == 'O' && gameboard[2] == 'O') {
+			
 			System.out.println("Sieger " + player);
-			return winCon = true;
+			winCon = true;
+			return winCon;
 		}
 		if (gameboard[3] == 'X' && gameboard[4] == 'X' && gameboard[5] == 'X'
 				|| gameboard[3] == 'O' && gameboard[4] == 'O' && gameboard[5] == 'O') {
@@ -176,7 +182,8 @@ public class TicTacToe {
 
 	// Method to place an X or an O
 	public static void butInBoardXOrOAndPrintBoard(char[] gameboard, char changeSymbol) {
-		//switch for User Input if for example User Input is 2 then change array Element one 
+		// switch for User Input if for example User Input is 2 then change array
+		// Element one
 		switch (change) {
 		case 1:
 			gameboard[0] = changeSymbol;
@@ -206,7 +213,7 @@ public class TicTacToe {
 			gameboard[8] = changeSymbol;
 			break;
 		}
-		// after us set the Symbol print out the new board 
+		// after us set the Symbol print out the new board
 		printTicTacToeBoard(gameboard);
 	}
 
@@ -229,20 +236,19 @@ public class TicTacToe {
 	}
 
 	public static void explainGame(char[] gameboard) {
-		System.out.println("Bitte geben sie eine Zahl ein die sie auf dem Feld sehen und an");
-		System.out.println("welcher stellen sie ihr Symbol setzen wollen");
 		System.out.println("[1][2][3]");
 		System.out.println("[4][5][6]");
 		System.out.println("[7][8][9]");
-		
-		/*for (int i = 0; i<gameboard.length;i++) {
-			int a = 1;
-			gameboard[i] = (char) a; 
-			a++;
-		}*/
-		
+		System.out.println("Bitte geben sie eine Zahl ein die sie auf dem Feld sehen und an");
+		System.out.println("welcher stellen sie ihr Symbol setzen wollen");
+
+		/*
+		 * for (int i = 0; i<gameboard.length;i++) { int a = 1; gameboard[i] = (char) a;
+		 * a++; } printTicTacToeBoard(gameboard);
+		 */
+
 	}
-	
+
 	public static String inputName() {
 		Scanner playerName = new Scanner(System.in);
 		String player = playerName.nextLine();
