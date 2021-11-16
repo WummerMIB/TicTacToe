@@ -101,6 +101,7 @@ public class TicTacToe {
 					else if (player == "CPU") {
 						while (rightPlace == false) {
 							// calls Method to generate a Random Number
+							System.out.println("CPU Zug");
 							randomNumber();
 							changeSymbol = 'O';
 							rightPlacement(gameboard, changeSymbol, change, player);
@@ -342,6 +343,4 @@ public class TicTacToe {
 			}
 		}
 	}
-
 }
-
