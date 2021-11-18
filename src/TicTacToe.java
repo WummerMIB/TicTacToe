@@ -160,7 +160,6 @@ public class TicTacToe {
 			else {
 				System.out.println("Bitte geben sie eine Zahl ein");
 			}
-
 		}
 		// method needs to return an int number and if it return it in if condition than
 		// you get an error
@@ -343,6 +342,5 @@ public class TicTacToe {
 			}
 		}
 	}
-	
-}
 
+}
