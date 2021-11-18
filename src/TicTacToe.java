@@ -38,7 +38,7 @@ public class TicTacToe {
 			System.out.println("2 CPU");
 
 			// Scanner for the decision if you want to play against a Player or CPU
-			functionScanner();
+			functionScanner(2);
 
 			// If Input from User is 1 Play against a Player
 			if (change == 1) {
@@ -54,7 +54,7 @@ public class TicTacToe {
 						// As long as the user does not place the symbol in the right place its loops
 						while (rightPlace == false) {
 							// calls Method fuctionScanner for Input from player to place a symbol
-							functionScanner();
+							functionScanner(9);
 							// Variable that shows which symbol is placed
 							changeSymbol = 'X';
 							// Calls Method rightPlacement to check if the Player but the symbol on the
@@ -71,7 +71,7 @@ public class TicTacToe {
 					// now player is Player 2 and it is Player 2 turn
 					else if (player == "Player 2") {
 						while (rightPlace == false) {
-							functionScanner();
+							functionScanner(9);
 							changeSymbol = 'O';
 							rightPlacement(gameboard, changeSymbol, change, player);
 						}
@@ -88,7 +88,7 @@ public class TicTacToe {
 				while (winCon == false) {
 					if (player == "Player 1") {
 						while (rightPlace == false) {
-							functionScanner();
+							functionScanner(9);
 							changeSymbol = 'X';
 							rightPlacement(gameboard, changeSymbol, change, player);
 						}
@@ -130,8 +130,8 @@ public class TicTacToe {
 		System.out.println("[" + gameboard[6] + "][" + gameboard[7] + "][" + gameboard[8] + "]");
 	}
 
-	// Method for Users to Input numbers
-	public static int functionScanner() {
+	// Method for Users to Input numbers 
+	public static int functionScanner(int x) {
 		// Variable for loop to look if user makes the right Input
 		boolean rightInput = false;
 		// while loop to continue if user makes wrong input
@@ -144,12 +144,12 @@ public class TicTacToe {
 				change = sc.nextInt();
 				// if number is smaller than 9 and bigger than 0 than return number from User
 				// Input
-				if (change <= 9 && !(change <= 0)) {
+				if (change <= x && !(change <= 0)) {
 					return change;
 				}
 				// if number is bigger than 9 or smaller or equal to 0 Print this message
 				else {
-					System.out.println("Bitte geben sie ein Zahl eine Zahl zwischen 1 und 9 ein");
+					System.out.println("Bitte geben sie ein Zahl eine Zahl zwischen 1 und " + x + " ein");
 				}
 			}
 			// if Input is a double number then print this message
@@ -311,6 +311,7 @@ public class TicTacToe {
 			System.out.println("Möchten Sie nocheinmal Spielen? (ja/nein)");
 			// Scanner for User Input that save it in the String con
 			Scanner continueGameScanner = new Scanner(System.in);
+			// Input is saved in con as String  
 			con = continueGameScanner.nextLine();
 			// if Input is nein than dont't continue the game
 			if (con.equals("nein")) {
